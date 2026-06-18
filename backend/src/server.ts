@@ -1,4 +1,4 @@
-import { initializeGlobalCategories } from "../services/globalCategories.service.js";
+import { initializeGlobalCategories } from "./services/globalCategories.service";
 import app from "./app.js";
 import { env } from "./config/env.js";
 import initializeFirebaseAdmin from "./config/firebase.js";
@@ -6,7 +6,7 @@ import { prismaConnect } from "./config/prisma.js";
 
 const PORT = env.PORT;
 
-initializeFirebaseAdmin()
+initializeFirebaseAdmin();
 
 const startServer = async () => {
   try {
@@ -14,7 +14,11 @@ const startServer = async () => {
 
     await initializeGlobalCategories();
 
-    await app.listen({ port: PORT });
+    await app.listen({
+      port: PORT,
+      host: "0.0.0.0",
+    });
+
     console.log(`Servidor rodando na porta ${PORT}`);
   } catch (error) {
     console.error(error);
