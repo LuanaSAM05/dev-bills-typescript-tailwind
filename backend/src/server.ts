@@ -1,4 +1,4 @@
-import { initializeGlobalCategories } from "./services/globalCategories.service";
+import { initializeGlobalCategories } from "./services/globalCategories.service.js";
 import app from "./app.js";
 import { env } from "./config/env.js";
 import initializeFirebaseAdmin from "./config/firebase.js";
