@@ -9,13 +9,14 @@ dayjs.extend(utc);
 
 export const getTransactions = async (
   request: FastifyRequest<{ Querystring: GetTransactionsQuery }>,
-  reply: FastifyReply,
+  reply: FastifyReply
 ): Promise<void> => {
   const userId = request.userId;
-  
+
   if (!userId) {
-    reply.status(401).send({ error: "Usuário não autenticado" });
-    return;
+    return reply.status(401).send({
+      error: "Usuário não autenticado",
+    });
   }
 
   const { month, year, type, categoryId } = request.query;
@@ -25,6 +26,7 @@ export const getTransactions = async (
   if (month && year) {
     const startDate = dayjs.utc(`${year}-${month}-01`).startOf("month").toDate();
     const endDate = dayjs.utc(startDate).endOf("month").toDate();
+
     filters.date = { gte: startDate, lte: endDate };
   }
 
@@ -52,9 +54,15 @@ export const getTransactions = async (
         date: "desc",
       },
     });
-    reply.send(transactions);
-  } catch (err) {
-    request.log.error("Erro ao trazer transações", err);
-    reply.status(500).send({ error: "Erro do servidor" });
+
+    return reply.send(transactions);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : String(err);
+
+    request.log.error("Erro ao trazer transações: " + message);
+
+    return reply.status(500).send({
+      error: "Erro do servidor",
+    });
   }
 };

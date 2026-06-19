@@ -70,17 +70,19 @@ export const getTransactionsSummary = async (
       }
     }
 
-    const summary: TransactionSummary = {
-      totalExpenses,
-      totalIncomes,
-      balance: Number(totalIncomes - totalExpenses).toFixed(2),
-      expensesByCategory: Array.from(groupedExpenses.values())
-        .map((entry) => ({
-          ...entry,
-          percentage: Number.parseFloat(((entry.totalAmount / totalExpenses) * 100).toFixed(2)),
-        }))
-        .sort((a, b) => b.totalAmount - a.totalAmount),
-    };
+const summary: TransactionSummary = {
+  totalExpenses,
+  totalIncome: totalIncomes,
+  balance: Math.round((totalIncomes - totalExpenses) * 100) / 100,
+  expensesByCategory: Array.from(groupedExpenses.values())
+    .map((entry) => ({
+      ...entry,
+      percentage: Number.parseFloat(
+        ((entry.totalAmount / totalExpenses) * 100).toFixed(2)
+      ),
+    }))
+    .sort((a, b) => b.totalAmount - a.totalAmount),
+};
 
     reply.send(summary);
   } catch (err) {
