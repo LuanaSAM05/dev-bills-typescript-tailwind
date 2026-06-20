@@ -1,18 +1,18 @@
 import type { FastifyInstance } from "fastify";
 import { zodToJsonSchema } from "zod-to-json-schema";
-import createTransaction from "../controllers/transactions/createTransaction.controller";
-import { deleteTransaction } from "../controllers/transactions/deleteTransaction.controller";
-import { getTransactions } from "../controllers/transactions/getTransactions.controller";
-import { getTransactionsSummary } from "../controllers/transactions/getTransactionsSummary.controller";
+import createTransaction from "../controllers/transactions/createTransaction.controller.js";
+import { deleteTransaction } from "../controllers/transactions/deleteTransaction.controller.js";
+import { getTransactions } from "../controllers/transactions/getTransactions.controller.js";
+import { getTransactionsSummary } from "../controllers/transactions/getTransactionsSummary.controller.js";
 import {
   createTransactionSchema,
   deleteTransactionSchema,
   getHistoricalTransactionsSchema,
   getTransactionsSchema,
   getTransactionsSummarySchema,
-} from "../schemas/transaction.schema";
-import { authMiddleware } from "../middlewares/auth.middlewares";
-import { getHistoricalTransactions } from "../controllers/transactions/getHistoricalTransactions.controller";
+} from "../schemas/transaction.schema.js";
+import { authMiddleware } from "../middlewares/auth.middlewares.js";
+import { getHistoricalTransactions } from "../controllers/transactions/getHistoricalTransactions.controller.js";
 
 const transactionRoutes = async (fastify: FastifyInstance) => {
   

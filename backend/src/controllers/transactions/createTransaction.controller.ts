@@ -1,7 +1,7 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import type z from "zod";
-import prisma from "../../config/prisma";
-import { createTransactionSchema } from "../../schemas/transaction.schema";
+import prisma from "../../config/prisma.js";
+import { createTransactionSchema } from "../../schemas/transaction.schema.js";
 
 const createTransaction = async (
   request: FastifyRequest<{ Body: z.infer<typeof createTransactionSchema> }>,

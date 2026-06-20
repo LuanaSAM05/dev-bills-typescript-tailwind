@@ -1,8 +1,8 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
-import type { GetHistoricalTransactionsQuery } from "../../schemas/transaction.schema";
+import type { GetHistoricalTransactionsQuery } from "../../schemas/transaction.schema.js";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import prisma from "../../config/prisma";
+import prisma from "../../config/prisma.js";
 import "dayjs/locale/pt-br";
 
 dayjs.locale("pt-br");
