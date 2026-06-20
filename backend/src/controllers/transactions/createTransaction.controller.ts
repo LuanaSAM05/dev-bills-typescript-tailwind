@@ -44,9 +44,12 @@ const createTransaction = async (
 
     const newTransaction = await prisma.transaction.create({
       data: {
-        ...transaction,
         userId,
-        date: transaction.date, // já vem como Date por causa do z.coerce.date()
+        date: transaction.date,
+        type: transaction.type,
+        description: transaction.description,
+        amount: transaction.amount,
+        categoryId: transaction.categoryId,
       },
       include: {
         category: true,

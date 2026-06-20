@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/server.js",
-"scripts": {
-  "dev": "tsx watch src/server.ts",
-  "build": "node --max-old-space-size=400 node_modules/typescript/bin/tsc",
-  "start": "node dist/server.js"
-},
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "node --max-old-space-size=400 node_modules/typescript/bin/tsc",
+    "start": "node dist/server.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -29,6 +29,6 @@
     "prettier": "^3.8.3",
     "prisma": "6",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.3"
+    "typescript": "5.4.5"
   }
 }
