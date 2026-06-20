@@ -6,7 +6,6 @@ node_modules/
 .env.development
 .env.production
 
-dist/
 build/
 
 frontend/node_modules/
